@@ -8,14 +8,6 @@ This repository contains the source files for my personal academic website, publ
 
 The website introduces me as an engineering student and provides access to my labs, projects, contact information, and selected coursework.
 
-## Repository contents
-
-| File | Description |
-|---|---|
-| `index.html` | Main page of my personal website. It includes the introduction, About Me, Contact, Labs, Project Deliverables, My Work, and Video sections. |
-| `WhatsApp.png` | WhatsApp image used as the contact link on the homepage. |
-| `landscape.jpg` | Landscape image displayed in the My Work section. |
-| `Assignment 2 Redesigning a digital experience.pdf` | PDF report for Assignment 2: *Redesigning a Digital Experience*. It documents the current Canvas desktop experience, UX analysis, proposed redesign, proposed user flow, before-and-after comparison, and design justification. |
 
 ## Labs and projects
 
