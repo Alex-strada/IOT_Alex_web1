@@ -30,14 +30,13 @@ This project analyzes Canvas as a tool for consulting academic information and p
 ## Technologies
 
 - HTML5
-- CSS (inline styles)
 - GitHub
 - GitHub Pages
 
 ## Author
 
 **Alejandro Estrada**  
-Engineering student · Robotics, programming, and technology
+Engineering student. Robotics, programming, and technology
 
 ---
 
