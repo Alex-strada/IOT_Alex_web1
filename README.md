@@ -1,3 +1,52 @@
-# IOT_Alex_web1
+# Alejandro Estrada — Personal Website
 
-##Link to access the web:  https://alex-strada.github.io/IOT_Alex_web1/
+This repository contains the source files for my personal academic website, published with **GitHub Pages**.
+
+## Live website
+
+**[Open my personal website](https://alex-strada.github.io/IOT_Alex_web1/)**
+
+The website introduces me as an engineering student and provides access to my labs, projects, contact information, and selected coursework.
+
+## Repository contents
+
+| File | Description |
+|---|---|
+| `index.html` | Main page of my personal website. It includes the introduction, About Me, Contact, Labs, Project Deliverables, My Work, and Video sections. |
+| `WhatsApp.png` | WhatsApp image used as the contact link on the homepage. |
+| `landscape.jpg` | Landscape image displayed in the My Work section. |
+| `Assignment 2 Redesigning a digital experience.pdf` | PDF report for Assignment 2: *Redesigning a Digital Experience*. It documents the current Canvas desktop experience, UX analysis, proposed redesign, proposed user flow, before-and-after comparison, and design justification. |
+
+## Labs and projects
+
+### Artist Fan Page — Luis Miguel
+
+The artist website is hosted in a separate repository:
+
+**[Open the Luis Miguel Artist Fan Page](https://alex-strada.github.io/luismiguel-fanweb/lab_lm.html)**
+
+Source code: [Alex-strada/luismiguel-fanweb](https://github.com/Alex-strada/luismiguel-fanweb)
+
+The main personal website includes a direct link to this artist page in its **Labs** section.
+
+### Assignment 2 — Redesigning a Digital Experience
+
+**[View the Assignment 2 PDF](./Assignment%202%20Redesigning%20a%20digital%20experience.pdf)**
+
+This project analyzes Canvas as a tool for consulting academic information and performance statistics. The redesign proposes an Academic Performance Dashboard to make course progress, grades, and upcoming deadlines easier to review.
+
+## Technologies
+
+- HTML5
+- CSS (inline styles)
+- GitHub
+- GitHub Pages
+
+## Author
+
+**Alejandro Estrada**  
+Engineering student · Robotics, programming, and technology
+
+---
+
+This repository is part of my academic coursework and documents the development of my personal website and selected course deliverables.
