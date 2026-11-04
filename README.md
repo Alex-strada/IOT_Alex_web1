@@ -37,7 +37,3 @@ This project analyzes Canvas as a tool for consulting academic information and p
 
 **Alejandro Estrada**  
 Engineering student. Robotics, programming, and technology
-
----
-
-This repository is part of my academic coursework and documents the development of my personal website and selected course deliverables.
