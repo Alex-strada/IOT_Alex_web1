@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lab 3: an interactive Smart Parking simulation inspired by Tec de Monterrey, Campus Querétaro.">
+  <meta name="theme-color" content="#122d3e">
+  <title>Smart Parking · Tec de Monterrey | Lab 3</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="m5 7 2-4h10l2 4 2 3v8H3v-8l2-3Zm0 0h14M3 11h18M6 18v3m12-3v3M6 14h2m8 0h2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 7a8 8 0 0 1 13-1L20 9M4 15l1.4 3a8 8 0 0 0 13-1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="Smart Parking home"><span class="brand-mark">P<span>·</span></span><span>smart<span class="brand-light">parking</span><small>TEC DE MONTERREY</small></span></a>
+    <div class="sidebar-label">WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <a href="#main" class="nav-item active" aria-current="page"><svg><use href="#i-grid"/></svg> Overview <span class="nav-dot"></span></a>
+      <button type="button" id="reference-nav" class="nav-item"><svg><use href="#i-pin"/></svg> Campus reference</button>
+      <a href="../index.html#labs" class="nav-item"><svg><use href="#i-external"/></svg> My labs</a>
+    </nav>
+    <div class="campus-card"><span class="campus-symbol">TEC</span><strong>Campus Querétaro</strong><p>A connected campus.<br>A better parking experience.</p><span class="campus-tag"><span class="status-dot"></span> IoT learning lab</span></div>
+    <div class="sidebar-bottom"><span class="lab-square">03</span><span><strong>Assignment 3</strong><small>Smart Parking System</small></span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div><span class="breadcrumb">Workspace</span><span class="breadcrumb-separator">/</span><strong>Parking overview</strong></div><div class="topbar-right"><span class="simulation-badge"><span class="status-dot"></span> Simulated data</span><span class="avatar" aria-hidden="true">P</span></div></header>
+    <main id="main">
+      <section class="page-heading"><div><div class="eyebrow">CONNECTED CAMPUS / LAB 3</div><h1>Parking, at a glance<span>.</span></h1><p>A little less searching. A little more campus time.</p></div><div class="location-chip"><svg><use href="#i-pin"/></svg><span>Tec de Monterrey<small>Campus Querétaro</small></span></div></section>
+      <section class="metrics" aria-label="Parking statistics">
+        <article class="metric"><div class="metric-top"><span>Total spaces</span><span class="metric-icon neutral"><svg><use href="#i-grid"/></svg></span></div><div class="metric-value" id="total-count">100</div><div class="metric-note">Across 5 parking zones</div></article>
+        <article class="metric"><div class="metric-top"><span>Available</span><span class="metric-icon mint"><svg><use href="#i-check"/></svg></span></div><div class="metric-value green" id="available-count">—</div><div class="metric-note"><span class="small-dot available-dot"></span> Ready for your arrival</div></article>
+        <article class="metric"><div class="metric-top"><span>Occupied</span><span class="metric-icon peach"><svg><use href="#i-car"/></svg></span></div><div class="metric-value" id="occupied-count">—</div><div class="metric-note"><span class="small-dot occupied-dot"></span> Vehicles detected</div></article>
+        <article class="metric occupancy-metric"><div class="metric-top"><span>Occupancy</span><span class="metric-icon blue"><svg><use href="#i-activity"/></svg></span></div><div class="metric-value"><span id="occupancy-count">—</span><span class="percent">%</span></div><div class="occupancy-track" role="progressbar" aria-label="Parking occupancy" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="occupancy-bar"><span id="occupancy-fill"></span></div><div class="metric-note" id="capacity-note">Calculating availability…</div></article>
+      </section>
+      <div class="content-grid">
+        <section class="panel parking-panel" aria-labelledby="map-heading">
+          <div class="panel-heading"><div><h2 id="map-heading">Explore the parking lot</h2><p>Click a space to simulate a vehicle arriving or leaving.</p></div><span class="live-badge" id="map-live"><span class="status-dot"></span> Live simulation</span></div>
+          <div class="map-toolbar"><div class="segmented" aria-label="Space filter"><button type="button" class="selected" data-filter="all" aria-pressed="true">All spaces</button><button type="button" data-filter="available" aria-pressed="false">Available</button><button type="button" data-filter="occupied" aria-pressed="false">Occupied</button></div><button type="button" class="text-button" id="reference-button"><svg><use href="#i-pin"/></svg> Satellite reference</button></div>
+          <div class="map-scroll" tabindex="0" role="region" aria-label="Interactive parking map; scroll horizontally on small screens">
+            <div class="parking-map" id="parking-map">
+              <div class="map-north">N <span>↑</span></div><div class="campus-boundary">TEC DE MONTERREY <span>·</span> QUERÉTARO</div>
+              <div class="landscape landscape-top" aria-hidden="true"></div>
+              <div class="road road-top" aria-hidden="true"><span>→</span><span>→</span><span>→</span></div>
+              <div id="parking-zones" class="parking-zones"></div>
+              <div class="road road-bottom" aria-hidden="true"><span>←</span><span>←</span><span>←</span></div>
+              <div class="landscape landscape-bottom" aria-hidden="true"></div><span class="map-entrance">↑ &nbsp; ENTRANCE</span><span class="map-exit">EXIT &nbsp; ↓</span><span class="map-store">CAMPUS STORE</span>
+            </div>
+          </div>
+          <div class="map-footer"><div class="legend"><span><i class="legend-available"></i> Available</span><span><i class="legend-occupied"></i> Occupied</span><span><i class="legend-selected"></i> Selected</span></div><span class="schematic-label">Illustrative layout · 100 simulated spaces</span></div>
+          <p class="filter-result" id="filter-result" role="status">Showing all 100 parking spaces.</p>
+        </section>
+        <aside class="detail-column">
+          <section class="panel simulation-panel" aria-labelledby="simulation-heading"><div class="section-eyebrow"><svg><use href="#i-activity"/></svg> SENSOR SIMULATION</div><h2 id="simulation-heading">A campus in motion.</h2><p>Virtual sensors keep the parking map up to date, one arrival at a time.</p><div class="simulation-line"><span>Status</span><strong id="simulation-status"><span class="status-dot"></span> Running</strong></div><label class="simulation-line" for="update-speed"><span>Update every</span><select id="update-speed"><option value="3000">3 seconds</option><option value="5000" selected>5 seconds</option><option value="10000">10 seconds</option></select></label><button type="button" class="primary-button" id="pause-button"><span id="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">Pause simulation</span></button><button type="button" class="secondary-button" id="randomize-button"><svg><use href="#i-refresh"/></svg> Randomize all spaces</button><p class="simulation-footnote">100% simulated. No physical sensors.</p></section>
+          <section class="panel selected-panel" aria-labelledby="space-heading"><div class="selected-heading"><h2 id="space-heading">Space details</h2><span class="space-chip" id="selected-id">A01</span></div><div class="selected-state"><span class="space-large-icon" id="selected-icon"><svg><use href="#i-car"/></svg></span><div><strong id="selected-status">—</strong><small id="selected-zone">Zone A · Virtual sensor</small></div></div><div class="sensor-reading"><span>Sensor reading</span><strong id="selected-reading">—</strong></div><button type="button" id="toggle-space" class="secondary-button">Change status</button><p class="selected-hint">Select any space to inspect its sensor.</p></section>
+        </aside>
+      </div>
+      <div class="bottom-grid">
+        <section class="panel zones-panel" aria-labelledby="zones-heading"><div class="panel-heading compact"><h2 id="zones-heading">Availability by zone</h2><span>20 spaces per zone</span></div><div id="zone-summary" class="zone-summary"></div></section>
+        <section class="panel activity-panel" aria-labelledby="activity-heading"><div class="panel-heading compact"><h2 id="activity-heading">Sensor activity</h2><span id="last-updated">Just updated</span></div><ol id="activity-list"></ol></section>
+      </div>
+      <footer class="page-footer"><span><strong>Smart Parking</strong> · Tec de Monterrey · Lab 3</span><span>Built with HTML, CSS &amp; JavaScript <span class="footer-dot">·</span> All readings are simulated</span></footer>
+      <div class="sr-only" role="status" aria-live="polite" id="announcement"></div>
+      <noscript><p class="noscript">Please enable JavaScript to use the parking simulation.</p></noscript>
+    </main>
+  </div>
+  <dialog id="reference-dialog" aria-labelledby="reference-heading"><div class="dialog-heading"><div><div class="eyebrow">DESIGN REFERENCE</div><h2 id="reference-heading">A real campus. A virtual system.</h2></div><button type="button" id="close-reference" aria-label="Close satellite reference">×</button></div><p>The provided Tec de Monterrey parking image inspired the parallel parking bays and circulation lanes. The interactive map models 100 spaces; it is not a survey of the real lot.</p><img src="assets/tec-parking-reference.png" alt="Provided aerial reference of the Tec de Monterrey Querétaro parking lot with parallel parking bays outlined in red." width="1522" height="1256"><div class="reference-caption">Assignment reference image · All application readings and vehicle movements are simulated.</div></dialog>
+</body>
+</html>
